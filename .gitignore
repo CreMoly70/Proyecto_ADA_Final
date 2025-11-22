@@ -1,0 +1,22 @@
+# Entorno virtual
+.venv/
+env/
+venv/
+
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Datos y archivos grandes generados
+data/
+results/
+
+# Archivos comprimidos y binarios
+*.npz
+*.gz
+*.csv
+*.png
+
+# Configuración local / secretos
+.env

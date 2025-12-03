@@ -13,6 +13,7 @@ from telegram.ext import (
 )
 
 import proyecto_adA_console as core  # Debe coincidir EXACTO con tu archivo
+from complexity_analyzer import analyze_code, format_analysis_report  # Nuevo: analizador de complejidad
 
 
 # ============== utilidades ==============
@@ -55,7 +56,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/predict — Predecir índice de imagen\n"
         "/bench — Probar algoritmos RA2\n"
         "/gradcheck — Verificar gradientes\n"
-        "/complexity — Analizar complejidad asintótica\n"
+        "/analizar_codigo — Analizar complejidad O(n) de codigo\n"
+        "/complexity — Analizar complejidad experimental\n"
         "/whoami — Mostrar tu user id",
         parse_mode="Markdown"
     )
@@ -183,6 +185,65 @@ async def gradcheck(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(f"⚠️ Error: {e}\n{traceback.format_exc()}")
 
 
+# ============== COMANDO ANALIZAR_CODIGO (Nuevo) ==============
+
+async def analizar_codigo(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Analiza la complejidad asintotica de codigo Python enviado."""
+    if not autorizado(update):
+        return await no_autorizado(update)
+
+    try:
+        # Obtener el codigo del mensaje
+        mensaje = update.message.text
+        
+        # Intentar extraer codigo entre bloques de codigo (```)
+        if "```" in mensaje:
+            # Formato: /analizar_codigo
+            # ```python
+            # codigo aqui
+            # ```
+            partes = mensaje.split("```")
+            if len(partes) >= 3:
+                codigo = partes[1]
+                # Remover 'python' o 'py' si esta al inicio
+                if codigo.strip().startswith("python"):
+                    codigo = codigo.strip()[6:].strip()
+                elif codigo.strip().startswith("py"):
+                    codigo = codigo.strip()[2:].strip()
+            else:
+                codigo = partes[1] if len(partes) > 1 else ""
+        else:
+            # Si no hay bloques de codigo, asumir que todo es codigo
+            codigo = mensaje.replace("/analizar_codigo", "").strip()
+        
+        if not codigo:
+            return await update.message.reply_text(
+                "Uso:\n"
+                "/analizar_codigo\n"
+                "```python\n"
+                "def mi_funcion(arr):\n"
+                "    for i in range(len(arr)):\n"
+                "        print(arr[i])\n"
+                "```\n\n"
+                "O simplemente envia el codigo entre tildes de codigo (```)."
+            )
+        
+        # Analizar el codigo
+        result = analyze_code(codigo)
+        report = format_analysis_report(result)
+        
+        # Enviar el reporte
+        await update.message.reply_text(
+            f"<pre>{report}</pre>",
+            parse_mode="HTML"
+        )
+        
+    except Exception as e:
+        await update.message.reply_text(
+            f"⚠️ Error al analizar: {str(e)[:200]}"
+        )
+
+
 # ============== COMANDO COMPLEXITY ==============
 
 async def complexity(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -272,6 +333,7 @@ def main():
     app.add_handler(CommandHandler("predict", predict))
     app.add_handler(CommandHandler("bench", bench))
     app.add_handler(CommandHandler("gradcheck", gradcheck))
+    app.add_handler(CommandHandler("analizar_codigo", analizar_codigo))
     app.add_handler(CommandHandler("complexity", complexity))
 
     # Depuración / utilidades

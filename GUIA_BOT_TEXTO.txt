@@ -1,0 +1,255 @@
+================================================================================
+           COMO HACER FUNCIONAR EL BOT DE TELEGRAM - GUIA RAPIDA
+================================================================================
+
+RESUMEN EN 5 PASOS:
+
+1. Crear bot en Telegram (@BotFather) y obtener TOKEN
+2. Obtener tu User ID (@userinfobot)
+3. Crear archivo .env con TOKEN y USER_ID
+4. Ejecutar: python bot_ada.py
+5. Buscar tu bot en Telegram y escribir /start
+
+================================================================================
+PASO 1: CREAR UN BOT EN TELEGRAM
+================================================================================
+
+1. Abre Telegram y busca a: @BotFather
+
+2. Escribe: /start
+
+3. Luego escribe: /newbot
+
+4. BotFather te pedira:
+   - Nombre del bot (ejemplo: Proyecto ADA Bot)
+   - Username del bot (ejemplo: proyecto_ada_bot)
+
+5. BotFather te dara un TOKEN que se vea asi:
+   7331133962:AAEtthWxr_GwMbIR6yLbhNw1VfcMRmM98dI
+
+>> GUARDA ESTE TOKEN - LO NECESITAS EN EL PASO 3
+
+================================================================================
+PASO 2: OBTENER TU USER ID
+================================================================================
+
+1. En Telegram, busca a: @userinfobot
+
+2. Escribe: /start
+
+3. Te mostrara tu User ID (un numero como: 1306756911)
+
+>> GUARDA TU USER ID - LO NECESITAS EN EL PASO 3
+
+================================================================================
+PASO 3: CREAR EL ARCHIVO .env
+================================================================================
+
+1. Navega a la carpeta del proyecto:
+   c:\Users\Admin\Desktop\Proyecto ADA\Proyecto_ADA_Final
+
+2. Crea un archivo NUEVO llamado: .env
+   (Sin extension, solo ".env")
+
+3. Abre el archivo .env con un editor de texto (Notepad)
+
+4. Pega lo siguiente:
+   
+   TELEGRAM_BOT_TOKEN=TU_TOKEN_AQUI
+   ALLOWED_USER_ID=TU_USER_ID_AQUI
+
+5. Reemplaza:
+   - TU_TOKEN_AQUI: Con el token que obtuviste en el PASO 1
+   - TU_USER_ID_AQUI: Con tu User ID que obtuviste en el PASO 2
+
+EJEMPLO del archivo .env completo:
+
+   TELEGRAM_BOT_TOKEN=7331133962:AAEtthWxr_GwMbIR6yLbhNw1VfcMRmM98dI
+   ALLOWED_USER_ID=1306756911
+
+6. Guarda el archivo (Ctrl+S o Archivo > Guardar)
+
+================================================================================
+PASO 4: INSTALAR DEPENDENCIAS (si no las tienes)
+================================================================================
+
+Abre PowerShell en la carpeta del proyecto y ejecuta:
+
+   pip install python-telegram-bot python-dotenv
+
+Si no sabes como abrir PowerShell en la carpeta:
+- Click derecho en la carpeta
+- Selecciona "Open PowerShell window here"
+
+================================================================================
+PASO 5: EJECUTAR EL BOT
+================================================================================
+
+En PowerShell, ejecuta:
+
+   python bot_ada.py
+
+Deberias ver en la consola:
+
+   TOKEN (masked): 7331133962:...
+   USER ID AUTORIZADO: 1306756911
+   Bot ADA iniciado correctamente. Escribe /start en Telegram.
+
+>> Si ves esto, el bot esta funcionando correctamente
+
+================================================================================
+PASO 6: USAR EL BOT EN TELEGRAM
+================================================================================
+
+1. Abre Telegram
+
+2. En la barra de busqueda, busca tu bot:
+   (Por ejemplo: @proyecto_ada_bot)
+
+3. Abre el chat con tu bot
+
+4. Escribe: /start
+
+5. Te mostrara todos los comandos disponibles
+
+6. Prueba los comandos:
+   - /analizar_codigo (nuevo)
+   - /download
+   - /train
+   - /eval
+   - etc.
+
+================================================================================
+COMANDOS DISPONIBLES DEL BOT
+================================================================================
+
+/start              - Ver todos los comandos
+/analizar_codigo    - Analizar complejidad O(n) de codigo Python [NUEVO]
+/complexity         - Analizar complejidad experimental
+/download           - Descargar dataset MNIST
+/train              - Entrenar modelo
+/eval               - Evaluar modelo
+/report             - Generar reporte
+/predict            - Predecir un digito
+/bench              - Benchmark de algoritmos
+/gradcheck          - Verificar gradientes
+/whoami             - Ver tu User ID
+
+================================================================================
+EJEMPLO: USAR /analizar_codigo
+================================================================================
+
+En Telegram, envias esto:
+
+   /analizar_codigo
+   ```python
+   def linear_search(arr, target):
+       for i in range(len(arr)):
+           if arr[i] == target:
+               return i
+       return -1
+   ```
+
+El bot responde:
+
+   ============================================================
+   ANALISIS DE COMPLEJIDAD ASINTOTICA
+   ============================================================
+
+   Complejidad: O(n)
+
+   Detalles del analisis:
+     - Bucles detectados: 1
+     - Recursion detectada: No
+     - Profundidad maxima de anidacion: 1
+
+   ============================================================
+
+================================================================================
+SOLUCIONAR PROBLEMAS
+================================================================================
+
+PROBLEMA: "Falta TELEGRAM_BOT_TOKEN en el .env"
+SOLUCION: 
+- Verifica que el archivo .env exista en la carpeta raiz
+- Verifica que tenga escrito correctamente: TELEGRAM_BOT_TOKEN=...
+- Verifica que el TOKEN sea correcto
+
+PROBLEMA: "No tienes permiso para usar este bot"
+SOLUCION:
+- Verifica que ALLOWED_USER_ID en .env sea tu User ID correcto
+- Verifica que es el mismo numero que te mostro @userinfobot
+
+PROBLEMA: El bot no responde en Telegram
+SOLUCION:
+- Verifica que la consola siga mostrando el bot ejecutandose
+- Si se detiene, ejecuta de nuevo: python bot_ada.py
+- Verifica que seas el Usuario autorizado
+
+PROBLEMA: Error "ModuleNotFoundError"
+SOLUCION:
+- Ejecuta: pip install python-telegram-bot python-dotenv
+
+PROBLEMA: El archivo .env no funciona
+SOLUCION:
+- Verifica que el archivo se llame exactamente ".env" (sin extension .txt)
+- Verifica que este en la carpeta raiz del proyecto
+- Verifica que no tenga espacios al inicio de las lineas
+
+================================================================================
+PREGUNTAS FRECUENTES
+================================================================================
+
+P: Donde obtengo el TOKEN?
+R: En Telegram, busca @BotFather, escribe /newbot y sigue las instrucciones
+
+P: Donde obtengo mi User ID?
+R: En Telegram, busca @userinfobot y escribe /start
+
+P: Como cierro el bot?
+R: Presiona Ctrl+C en la consola de PowerShell
+
+P: El bot se detiene cuando cierro la consola?
+R: Si. Para mantenerlo corriendo 24/7, usa Task Scheduler o un servidor en
+   la nube (Heroku, AWS, etc.)
+
+P: Puedo usar el bot con multiples usuarios?
+R: Actualmente solo soporta un usuario. Para multiples usuarios, necesitaria
+   modificar el archivo bot_ada.py
+
+P: Como actualizo los comandos del bot en Telegram?
+R: Telegram cachea los comandos. Espera 5 minutos o busca el bot de nuevo
+
+P: El comando /analizar_codigo no funciona?
+R: Verifica que:
+   - Tengas el archivo complexity_analyzer.py en la carpeta
+   - El codigo Python que envias sea valido (sin errores de sintaxis)
+   - Envies el codigo entre bloques de codigo (```)
+
+================================================================================
+ESTRUCTURA DE CARPETAS
+================================================================================
+
+Proyecto_ADA_Final/
+├── bot_ada.py                    <- Ejecutar esto: python bot_ada.py
+├── .env                          <- Crear este archivo en PASO 3
+├── complexity_analyzer.py        <- Motor de analisis de complejidad
+├── analizador_complejidad.py     <- CLI del analizador
+├── proyecto_adA_console.py
+├── README.md
+└── GUIA_BOT.md                   <- Esta guia
+
+================================================================================
+SIGUIENTES PASOS
+================================================================================
+
+1. Completa los 6 pasos de esta guia
+2. Ejecuta: python bot_ada.py
+3. Abre Telegram y busca tu bot
+4. Escribe /start para ver los comandos
+5. Prueba /analizar_codigo con alguno de tus algoritmos
+6. Experimenta con otros comandos
+
+================================================================================
+                            LListo! Disfruta el bot!
+================================================================================

@@ -341,7 +341,7 @@ accuracy_curve.png
 **Estabilidad (semillas):**
 python resumen_semillas.py
 
-**Produce:**
+**Produce:**  
 results/summary_seeds.csv
 results/summary_seeds.png
 

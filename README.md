@@ -45,30 +45,53 @@ Ingresa tu código Python y el analizador te dirá su complejidad O(n).
 **📂 Estructura del proyecto**
 Proyecto_ADA_Final/
 ├── .venv/                      # Entorno virtual
+
 ├── data/                       # Dataset MNIST comprimido
+
 ├── results/                    # Resultados de entrenamiento y reportes
+
 │   ├── ra1_regularizado/
+
 │   ├── ra3_hardmine/
+
 │   ├── ra3_prune20/
+
 │   ├── report_regularizado/
+
 │   ├── seed0, seed1, seed2/
+
 │   ├── ablation_con_reg/
+
 │   ├── ablation_sin_reg/
+
 │   ├── test_bot/               # Resultados generados desde el bot
+
 │   ├── summary_seeds.csv
+
 │   └── summary_seeds.png
+
 │
 ├── proyecto_adA_console.py     # Código principal (CLI)
+
 ├── bot_ada.py                  # Bot de Telegram para control remoto
+
 ├── graficar_logs.py            # Script de gráficos (loss y accuracy)
+
 ├── resumen_semillas.py         # Script de estabilidad
+<<<<<<< HEAD
 ├── complexity_analyzer.py      # Motor de análisis de complejidad (NUEVO)
 ├── analizador_complejidad.py   # CLI para analizador de complejidad (NUEVO)
 ├── ejemplos_algoritmos.py      # Ejemplos de algoritmos (NUEVO)
 ├── test_complexity_analyzer.py # Tests del analizador (NUEVO)
+=======
+
+>>>>>>> 780b789af0c1ae68aa71ecc417c806f13844fe11
 ├── .env                        # Variables del bot (TOKEN, USER_ID)
+
 ├── README.md                   # Este archivo
+
 └── Informe_Final_ADA_Proyecto_Bot.docx
+
 
 **🧩 Requisitos**
 Python 3.10+
@@ -77,6 +100,7 @@ Python 3.10+
 pip install numpy pandas matplotlib python-telegram-bot python-dotenv
 
 **▶️ Ejecución del Proyecto (versión consola)**
+
 **1️⃣ Descargar dataset MNIST**
 python proyecto_adA_console.py download --out data/mnist.npz
 
@@ -430,13 +454,15 @@ Esta herramienta realiza analisis estadisco y usa heurísticas. Para algoritmos 
 
 - El modelo final alcanzó 97.8 % de precisión y estabilidad de ±0.0006, cumpliendo satisfactoriamente los objetivos del curso.
 
-**👨‍💻 Autor**
+**👨‍💻 Autores**
 
-**Sebastián García Cruz**
+**Sebastián García Cruz - Jan Marco Polo - Alex David Villalba**
+
 Tecnología en Desarrollo de Software – Universidad del Valle
-Código: 202269409
+
+Código: 202269409 - - 
 Correo: CreMoly70@gmail.com
-Fecha: Noviembre de 2025
+Fecha: Diciembre de 2025
 Lenguaje: Python 3.11
 IDE: Visual Studio Code
 Ejecución: Consola / PowerShell / Telegram Bot

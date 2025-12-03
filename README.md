@@ -456,11 +456,9 @@ Esta herramienta realiza analisis estadisco y usa heurísticas. Para algoritmos 
 
 **👨‍💻 Autores**
 
-**Sebastián García Cruz - Jan Marco Polo - Alex David Villalba**
+**Sebastián García Cruz - Jan Marco Herrera - Alex David Villalba**
 
 Tecnología en Desarrollo de Software – Universidad del Valle
-
-Código: 202269409 - - 
 Correo: CreMoly70@gmail.com
 Fecha: Diciembre de 2025
 Lenguaje: Python 3.11
